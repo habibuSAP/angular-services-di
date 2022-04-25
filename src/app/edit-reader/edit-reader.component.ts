@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-import { allReaders } from 'app/data';
-import { Reader } from "app/models/reader";
+import { Reader } from 'app/models/reader';
+import {DataService} from '../core/data.service';
 
 @Component({
   selector: 'app-edit-reader',
@@ -13,11 +12,11 @@ export class EditReaderComponent implements OnInit {
 
   selectedReader: Reader;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private dataService: DataService) { }
 
   ngOnInit() {
-    let readerID: number = parseInt(this.route.snapshot.params['id']);
-    this.selectedReader = allReaders.find(reader => reader.readerID === readerID);
+    const readerID: number = parseInt(this.route.snapshot.params['id']);
+    this.selectedReader = this.dataService.getReaderById(readerID);
   }
 
   saveChanges() {
