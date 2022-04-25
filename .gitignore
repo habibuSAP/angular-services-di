@@ -6,7 +6,7 @@ node_modules/
 # compiled output
 /tmp
 /out-tsc
-
+/dist
 # dependencies
 
 # IDEs and editors
