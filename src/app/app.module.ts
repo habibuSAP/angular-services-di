@@ -9,6 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { EditReaderComponent } from './edit-reader/edit-reader.component';
+import {LoggerService} from './services/logger.service';
+import {PlainLoggerService} from './services/plain-logger.service';
+import {error} from 'protractor';
+import {DataService} from './services/data.service';
+import {dataServiceFactory} from './services/data.service.factory';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,17 @@ import { EditReaderComponent } from './edit-reader/edit-reader.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    // PlainLoggerService,
+    // {provide: LoggerService, useExisting: PlainLoggerService},
+    // {provide: LoggerService, useClass: PlainLoggerService}
+    // {provide: LoggerService, useValue: {
+    //   log: (message: string) => console.log(`Message: ${message}`),
+    //   error: (message: string) => console.log(`Problem: ${message}`)
+    //   }},
+    // {provide: DataService, useFactory: dataServiceFactory, deps: [LoggerService]}
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

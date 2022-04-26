@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Book } from 'app/models/book';
 import { Reader } from 'app/models/reader';
-import {LoggerService} from '../core/logger.service';
-import {DataService} from '../core/data.service';
+import {LoggerService} from '../services/logger.service';
+import {DataService} from '../services/data.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +17,9 @@ export class DashboardComponent implements OnInit {
   mostPopularBook: Book;
 
   constructor(private loggerService: LoggerService,
-              private dataService: DataService) { }
+              private dataService: DataService) {
+    this.loggerService.log('Creating the dashboard');
+  }
 
   ngOnInit() {
     this.allBooks = this.dataService.getAllBooks();
