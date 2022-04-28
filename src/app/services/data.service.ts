@@ -21,6 +21,7 @@ export class DataService {
     dataError.friendlyMessage = 'An error occurred retrieving data.';
     return throwError(dataError);
   }
+
   constructor(private loggerService: LoggerService,
               private http: HttpClient) { }
 
@@ -37,8 +38,10 @@ export class DataService {
     return allReaders.find(reader => reader.readerID === id);
   }
 
-  getAllBooks(): Book[] {
-    return allBooks;
+  getAllBooks(): Observable<Book[] | BookTrackerErrors > {
+    return this.http.get<Book[]>('/api/books').pipe(
+      catchError(DataService.handleError)
+    );
   }
 
   getBookById(id: number): Book {
